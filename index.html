@@ -7,6 +7,7 @@
   <link href="axis.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="axis.js"></script>
 </head>
 
 <body>
@@ -42,10 +43,27 @@
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" placeholder="Rick Astley">
               </div>
+
+
               <div class="form-group">
+                <label for="location">Location</label>
+                <select name="place" id="locationdropdown">
+                  <option value="computer">Computer #</option>
+                  <option value="location">Location</option>
+                </select>
+              </div>
+
+              <div class="form-group" id="computerform">
                 <label for="text">Computer #</label>
                 <input class="form-control" id="num" placeholder="42">
               </div>
+
+              <div class="form-group" id="locationform">
+                <label for="text">Location</label>
+                <input class="form-control" id="location" placeholder="Lobby">
+              </div>
+
+
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
           </div>
@@ -70,13 +88,16 @@
           <thead>
             <tr>
               <td>Name</td>
-              <td>Computer #</td>
+              <td>Location/Computer #</td>
+              <td>Subject</td>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <!-- sample data, will be populated based on server data-->
+            <tr class="rowtoggle success">
               <td>ayy lmao</td>
               <td>420</td>
+              <td>compooter spoopy</td>
             </tr>
           </tbody>
         </table>
