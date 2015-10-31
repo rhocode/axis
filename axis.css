@@ -1,0 +1,17 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-style: italic;
+}
+
+thead {
+  font-weight: bold;
+}
