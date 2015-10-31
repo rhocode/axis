@@ -12,4 +12,12 @@ $(document).ready(function() {
     }
   });
 
+  $(".rowtoggle").click(function(e) {
+    if( $(this).hasClass("success") ) {
+      $(this).addClass("danger").removeClass("success");
+    } else {
+      $(this).addClass("success").removeClass("danger");
+    }
+  });
+
 });
