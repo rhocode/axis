@@ -10,6 +10,8 @@ body {
 .navbar-brand {
   font-weight: bold;
   font-style: italic;
+  color: white !important;
+  margin-top: -5px;
 }
 
 thead {
