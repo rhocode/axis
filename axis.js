@@ -47,7 +47,7 @@ $(document).ready(function() {
     }
     
     if (dropdown) {
-      if (!$("#num").val() || isNumeric($("#num").val())) {
+      if (!$("#num").val() || !isNumeric($("#num").val())) {
         $("#num").parent('div').addClass("has-error");
       } else {
         $("#num").parent('div').removeClass("has-error");
@@ -65,7 +65,7 @@ $(document).ready(function() {
     }
 
     var format = /^[0-9]+[a-zA-Z]*[\s]*([\s,]+[0-9]+[a-zA-Z]*)*$/i;
-    if (!$("#subject").val() &&  format.test( $("#subject").val() )) {
+    if (!$("#subject").val() &&  format.test( $("#subject").val() ) ) {
       $("#subject").parent('div').addClass("has-error");
     } else {
       $("#subject").parent('div').removeClass("has-error");
