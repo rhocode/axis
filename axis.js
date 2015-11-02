@@ -65,7 +65,7 @@ $(document).ready(function() {
     }
 
     var format = /^[0-9]+[a-zA-Z]*[\s]*([\s,]+[0-9]+[a-zA-Z]*)*$/i;
-    if (!$("#subject").val() &&  format.test( $("#subject").val() ) ) {
+    if (!$("#subject").val() ||  format.test( $("#subject").val() ) ) {
       $("#subject").parent('div').addClass("has-error");
     } else {
       $("#subject").parent('div').removeClass("has-error");
@@ -86,7 +86,7 @@ $(document).ready(function() {
       console.log("we good");
       console.log(query);
     } else {
-      console.log("nice try");
+      console.log("nice try kid");
     }
 
   });
