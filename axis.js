@@ -9,6 +9,10 @@ function encodeRFC5987ValueChars (str) {
             replace(/%(?:7C|60|5E)/g, unescape);
 }
 
+function isNumeric(num){
+    return !isNaN(num)
+}
+
 $(document).ready(function() {
   // set defaults
   $("#locationform").hide();
@@ -39,14 +43,16 @@ $(document).ready(function() {
     } else {
       $("#name").parent('div').removeClass("has-error");
       valid++;
+      query += encodeRFC5987ValueChars($("#name").val());
     }
     
     if (dropdown) {
-      if (!$("#num").val()) {
+      if (!$("#num").val() || isNumeric($("#num").val())) {
         $("#num").parent('div').addClass("has-error");
       } else {
         $("#num").parent('div').removeClass("has-error");
         valid++;
+        query += "&num=" + encodeRFC5987ValueChars($("#num").val());
       }
     } else {
       if (!$("#location").val()) {
@@ -54,26 +60,31 @@ $(document).ready(function() {
       } else {
         $("#location").parent('div').removeClass("has-error");
         valid++;
+        query += "&loc=" + encodeRFC5987ValueChars($("#location").val());
       }
     }
 
-    if (!$("#subject").val()) {
+    var format = /^[0-9]+[a-zA-Z]*[\s]*([\s,]+[0-9]+[a-zA-Z]*)*$/i;
+    if (!$("#subject").val() &&  format.test( $("#subject").val() ) {
       $("#subject").parent('div').addClass("has-error");
     } else {
       $("#subject").parent('div').removeClass("has-error");
       valid++;
+      query += "&loc=" + encodeRFC5987ValueChars($("#location").val());
     }
     if (!$("#password").val()) {
       $("#password").parent('div').addClass("has-error");
     } else {
       $("#password").parent('div').removeClass("has-error");
       valid++;
+      query += "&pass=" + encodeRFC5987ValueChars($("#password").val());
     }
 
 
     if (valid == 4) {
       //do submit
       console.log("we good");
+      console.log(query);
     } else {
       console.log("nice try");
     }
