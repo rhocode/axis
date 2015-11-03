@@ -21,7 +21,7 @@ function sendLoginAttempt(query){
         crossDomain: true,
         dataType: "jsonp",
         success: function (data) {
-            $("#serverresponselogin").text("Sign-in successful! Welcome " + $("#name"));
+            $("#serverresponselogin").text("Sign-in successful! Welcome " + $("#name").val());
             setTimeout(function(){$('#signin').modal('toggle');}, 1000);
         },
         error: function (xhr, status) {
