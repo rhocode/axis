@@ -27,6 +27,7 @@ function sendLoginAttempt(query){
         dataType: "jsonp",
         success: function (data) {
             if(data.status == 'success') {
+              tutorID = data.tutorcode;
               $("#serverresponselogin").html("Sign-in successful! Welcome " + $("#name").val() + '! Your tutor code is <b>' + data.tutorcode + '</b>.');
             } else {
               $("#serverresponselogin").text("Sign-in failed.");
@@ -50,7 +51,6 @@ function populateTable(){
         crossDomain: true,
         dataType: "jsonp",
         success: function (data) {
-            
             $.each(data, function(i, item) {
                 var $tr = $('<tr id=\'' + item.tutorID + '\'>').append(
                     $('<td>').text(item.name),
@@ -58,12 +58,8 @@ function populateTable(){
                     $('<td>').text(item.subjects)
                 );
                 $('#tutorbody').html($tr);
-                // console.log($tr.wrap('<p>').html());
                 console.log(item.name);
             });
-
-
-            
         },
         error: function (xhr, status) {
         },
@@ -79,8 +75,14 @@ $(document).ready(function() {
   $("#locationform").hide();
   $("#locationdropdown").val("computer");
   var dropdown = true;
-  populateTable();
+  
   // dropdown changer
+
+
+  setInterval(function(){
+    populateTable();
+  }, 1000);
+
   $("#locationdropdown").change(function() {
     if ($("#locationdropdown").val() == "location") {
       dropdown = false;
