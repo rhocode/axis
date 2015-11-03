@@ -21,8 +21,12 @@ function sendLoginAttempt(query){
         crossDomain: true,
         dataType: "jsonp",
         success: function (data) {
-            $("#serverresponselogin").text("Sign-in successful! Welcome " + $("#name").val());
-            setTimeout(function(){$('#signin').modal('toggle');$("#serverresponselogin").text("&nbsp;");}, 1000);
+            if(data.status == 'success') {
+              $("#serverresponselogin").html("Sign-in successful! Welcome " + $("#name").val() + '! Your tutor code is <b>' + data.tutorcode + '</b>.');
+            } else {
+              $("#serverresponselogin").text("Sign-in failed.");
+            }
+            
         },
         error: function (xhr, status) {
             $("#serverresponselogin").text("Server might be offline. Please contact aafu@ucdavis.edu!");
