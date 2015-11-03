@@ -125,7 +125,7 @@ $(document).ready(function() {
     } else {
       $("#subject").parent('div').removeClass("has-error");
       valid++;
-      query += "&sub=" + encodeRFC5987ValueChars($("#location").val());
+      query += "&sub=" + encodeRFC5987ValueChars($("#subject").val());
     }
     if (!$("#password").val()) {
       $("#password").parent('div').addClass("has-error");
