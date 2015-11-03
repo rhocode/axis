@@ -1,3 +1,8 @@
+
+
+var tutorID = -1; //Local tracking of tutor numbers
+
+
 function encodeRFC5987ValueChars (str) {
     return encodeURIComponent(str).
         // Note that although RFC3986 reserves "!", RFC5987 does not,
