@@ -36,12 +36,32 @@ function sendLoginAttempt(query){
         }
     });
 }
+
+function populateTable(){
+    $.ajax({
+        url: "http://d.rhocode.com:5000/table.html",
+        data: {},
+        type: "GET",
+        crossDomain: true,
+        dataType: "jsonp",
+        success: function (data) {
+            console.log(data)
+            
+        },
+        error: function (xhr, status) {
+        },
+        complete: function (xhr, status) {
+            console.log("complete");
+        }
+    });
+}
+
 $(document).ready(function() {
   // set defaults
   $("#locationform").hide();
   $("#locationdropdown").val("computer");
   var dropdown = true;
-
+  populateTable();
   // dropdown changer
   $("#locationdropdown").change(function() {
     if ($("#locationdropdown").val() == "location") {
