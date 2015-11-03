@@ -29,6 +29,7 @@ function sendLoginAttempt(query){
             if(data.status == 'success') {
               tutorID = data.tutorcode;
               $("#serverresponselogin").html("Sign-in successful! Welcome " + $("#name").val() + '! Your tutor code is <b>' + data.tutorcode + '</b>.');
+              populateTable();
             } else {
               $("#serverresponselogin").text("Sign-in failed.");
             }
@@ -53,7 +54,7 @@ function populateTable(){
         success: function (data) {
             var $data = $('<div>');
             var numitems = 0;
-            $.each(data, function(i, item) {
+            $.each(data.data, function(i, item) {
                 numitems++;
                 var $tr = $('<tr id=\'' + item.tutorID + '\'>').append(
                     $('<td>').text(item.name),
