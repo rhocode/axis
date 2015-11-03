@@ -24,7 +24,7 @@ function sendLoginAttempt(query){
             console.log(data);
         },
         error: function (xhr, status) {
-            alert("Sorry, there was a problem!");
+            $("#serverresponselogin").text("Server might be offline. Please contact aafu@ucdavis.edu!");
         },
         complete: function (xhr, status) {
             console.log("complete");
