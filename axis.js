@@ -15,7 +15,7 @@ function isNumeric(num){
 
 function sendLoginAttempt(query){
     $.ajax({
-        url: "d.rhocode.com:5000/login.html" + query,
+        url: "http://d.rhocode.com:5000/login.html" + query,
         data: {},
         type: "GET",
         dataType: "html",
