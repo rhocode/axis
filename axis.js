@@ -13,6 +13,23 @@ function isNumeric(num){
     return !isNaN(num)
 }
 
+function sendLoginAttempt(query){
+    $.ajax({
+        url: "d.rhocode.com:5000/login.html" + query,
+        data: {},
+        type: "GET",
+        dataType: "html",
+        success: function (data) {
+            console.log(data);
+        },
+        error: function (xhr, status) {
+            alert("Sorry, there was a problem!");
+        },
+        complete: function (xhr, status) {
+            console.log("complete");
+        }
+    });
+}
 $(document).ready(function() {
   // set defaults
   $("#locationform").hide();
@@ -104,3 +121,5 @@ $(document).ready(function() {
   });
 
 });
+
+
