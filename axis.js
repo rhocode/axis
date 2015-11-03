@@ -18,7 +18,8 @@ function sendLoginAttempt(query){
         url: "http://d.rhocode.com:5000/login.html" + query,
         data: {},
         type: "GET",
-        dataType: "html",
+        crossDomain: true,
+        dataType: "jsonp",
         success: function (data) {
             console.log(data);
         },
