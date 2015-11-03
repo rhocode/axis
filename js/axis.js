@@ -47,7 +47,7 @@ function populateTable(){
         success: function (data) {
             
             $.each(data, function(i, item) {
-                var $tr = $('<tr>').append(
+                var $tr = $('<tr id=\'' + item.tutorID + '\'>').append(
                     $('<td>').text(item.name),
                     $('<td>').text(item.location),
                     $('<td>').text(item.subjects)
