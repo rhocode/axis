@@ -51,15 +51,16 @@ function populateTable(){
         crossDomain: true,
         dataType: "jsonp",
         success: function (data) {
+            var $data = $('<div>');
             $.each(data, function(i, item) {
                 var $tr = $('<tr id=\'' + item.tutorID + '\'>').append(
                     $('<td>').text(item.name),
                     $('<td>').text(item.location),
                     $('<td>').text(item.subjects)
                 );
-                $('#tutorbody').html($tr);
-                console.log(item.name);
+                $data.append($tr);
             });
+            $('#tutorbody').html($data.html());
         },
         error: function (xhr, status) {
         },
