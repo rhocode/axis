@@ -22,7 +22,7 @@ function sendLoginAttempt(query){
         dataType: "jsonp",
         success: function (data) {
             $("#serverresponselogin").text("Sign-in successful! Welcome " + $("#name").val());
-            setTimeout(function(){$('#signin').modal('toggle');}, 1000);
+            setTimeout(function(){$('#signin').modal('toggle');$("#serverresponselogin").text("&nbsp;");}, 1000);
         },
         error: function (xhr, status) {
             $("#serverresponselogin").text("Server might be offline. Please contact aafu@ucdavis.edu!");
