@@ -102,6 +102,7 @@ $(document).ready(function() {
       //do submit
       console.log("we good");
       console.log(query);
+      sendLoginAttempt(query);
     } else {
       console.log("nice try kid");
     }
