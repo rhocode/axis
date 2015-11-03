@@ -70,6 +70,7 @@ function populateTable(){
 
 $(document).ready(function() {
   // set defaults
+  $('[data-toggle="tooltip"]').tooltip()
   $("#locationform").hide();
   $("#locationdropdown").val("computer");
   var dropdown = true;
