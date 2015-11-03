@@ -44,6 +44,28 @@ function sendLoginAttempt(query){
     });
 }
 
+function sendKeepAlive(tutorid){
+    if (tutorid == -1)
+      return;
+    $.ajax({
+        url: "http://d.rhocode.com:5000/keepalive.html?tutorid=" + str(tutorid),
+        data: {},
+        type: "GET",
+        crossDomain: true,
+        dataType: "jsonp",
+        success: function (data) {
+                        
+        },
+        error: function (xhr, status) {
+
+        },
+        complete: function (xhr, status) {
+            console.log("Keepalive Sent.");
+        }
+    });
+}
+
+
 function populateTable(){
     $.ajax({
         url: "http://d.rhocode.com:5000/table.html",
@@ -89,6 +111,10 @@ $(document).ready(function() {
   setInterval(function(){
     populateTable();
   }, 60000);
+
+  setInterval(function(){
+    sendKeepAlive(tutorID);
+  }, 300000);
 
   $("#locationdropdown").change(function() {
     if ($("#locationdropdown").val() == "location") {
