@@ -21,7 +21,8 @@ function sendLoginAttempt(query){
         crossDomain: true,
         dataType: "jsonp",
         success: function (data) {
-            $('#signin').modal('toggle');
+            $("#serverresponselogin").text("Sign-in successful! Welcome " + $("#name"));
+            setTimeout(function(){$('#signin').modal('toggle');}, 1000);
         },
         error: function (xhr, status) {
             $("#serverresponselogin").text("Server might be offline. Please contact aafu@ucdavis.edu!");
