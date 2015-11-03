@@ -47,11 +47,12 @@ function populateTable(){
         success: function (data) {
             
             $.each(data, function(i, item) {
-                // var $tr = $('<tr>').append(
-                    // $('<td>').text(item.rank),
-                    // $('<td>').text(item.content),
-                    // $('<td>').text(item.UID)
-                // ); //.appendTo('#records_table');
+                var $tr = $('<tr>').append(
+                    $('<td>').text(item.name),
+                    $('<td>').text(item.location),
+                    $('<td>').text(item.subjects)
+                );
+                $('#tutorbody').html($tr);
                 // console.log($tr.wrap('<p>').html());
                 console.log(item.name);
             });
