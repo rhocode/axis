@@ -52,7 +52,9 @@ function populateTable(){
         dataType: "jsonp",
         success: function (data) {
             var $data = $('<div>');
+            var numitems = 0;
             $.each(data, function(i, item) {
+                numitems++;
                 var $tr = $('<tr id=\'' + item.tutorID + '\'>').append(
                     $('<td>').text(item.name),
                     $('<td>').text(item.location),
@@ -60,6 +62,8 @@ function populateTable(){
                 );
                 $data.append($tr);
             });
+            if (numitems == 0)
+              data.append('<tr><td>There are no tutors at this time.</td><td/><td/></tr>')
             $('#tutorbody').html($data.html());
         },
         error: function (xhr, status) {
@@ -82,7 +86,7 @@ $(document).ready(function() {
 
   setInterval(function(){
     populateTable();
-  }, 1000);
+  }, 60000);
 
   $("#locationdropdown").change(function() {
     if ($("#locationdropdown").val() == "location") {
