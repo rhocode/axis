@@ -63,7 +63,7 @@ function populateTable(){
                 $data.append($tr);
             });
             if (numitems == 0)
-              data.append('<tr><td>There are no tutors at this time.</td><td/><td/></tr>')
+              $data.append($.parseHTML('<tr><td>There are no tutors at this time.</td><td/><td/></tr>'));
             $('#tutorbody').html($data.html());
         },
         error: function (xhr, status) {
@@ -82,7 +82,8 @@ $(document).ready(function() {
   var dropdown = true;
   
   // dropdown changer
-
+  
+  populateTable();
 
   setInterval(function(){
     populateTable();
