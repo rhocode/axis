@@ -35,6 +35,59 @@
       <!--/.container-fluid -->
     </nav>
 
+    <div class="modal fade" id="signup">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Sign Up</h3>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label class="control-label" for="name">Name (First and Last if you anticipate a conflict)</label>
+                <input type="text" class="form-control" id="name" placeholder="Rick Astley">
+              </div>
+
+
+              <div class="form-group">
+                <label for="location">Location</label>
+                <select name="place" id="locationdropdown">
+                  <option value="computer">Computer #</option>
+                  <option value="location">Location</option>
+                </select>
+              </div>
+
+              <div class="form-group" id="computerform">
+                <label class="control-label" for="text">Computer #</label>
+                <input class="form-control" id="num" placeholder="42">
+              </div>
+
+              <div class="form-group" id="locationform">
+                <label class="control-label" for="text">Location</label>
+                <input class="form-control" id="location" placeholder="Lobby">
+              </div>
+
+              <div class="form-group" id="subjectform">
+                <label class="control-label" for="subject">Subject(s) (Comma delimited)</label>
+                <input class="form-control" id="subject" placeholder="10, 20, 30, 154a">
+              </div>
+
+              <div class="form-group" id="serverresponselogin">
+                &nbsp;
+              </div>
+              <button type="button" id="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
     <div class="modal fade" id="signin">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -44,7 +97,7 @@
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <label class="control-label" for="name">Name (First and Last if you anticipate a conflicts)</label>
+                <label class="control-label" for="name">Name (First and Last if you anticipate a conflict)</label>
                 <input type="text" class="form-control" id="name" placeholder="Rick Astley">
               </div>
 
