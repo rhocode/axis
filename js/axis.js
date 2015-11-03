@@ -45,7 +45,18 @@ function populateTable(){
         crossDomain: true,
         dataType: "jsonp",
         success: function (data) {
-            console.log(data)
+            
+            $.each(data, function(i, item) {
+                // var $tr = $('<tr>').append(
+                    // $('<td>').text(item.rank),
+                    // $('<td>').text(item.content),
+                    // $('<td>').text(item.UID)
+                // ); //.appendTo('#records_table');
+                // console.log($tr.wrap('<p>').html());
+                console.log(item.name);
+            });
+
+
             
         },
         error: function (xhr, status) {
