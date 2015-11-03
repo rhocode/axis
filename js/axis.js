@@ -48,7 +48,7 @@ function sendKeepAlive(tutorid){
     if (tutorid == -1)
       return;
     $.ajax({
-        url: "http://d.rhocode.com:5000/keepalive.html?tutorid=" + str(tutorid),
+        url: "http://d.rhocode.com:5000/keepalive.html?tutorid=" + String(tutorid),
         data: {},
         type: "GET",
         crossDomain: true,
