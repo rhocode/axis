@@ -101,7 +101,7 @@ function populateTable(){
 }
 
 
-function submitSignIn() {
+function submitSignIn(dropdown) {
       //input validation
     var valid = 0;
     var query = "?name=";
@@ -257,14 +257,14 @@ $(document).ready(function() {
 
   // form submission
   $("#submit").click(function(e) {
-    submitSignIn();
+    submitSignIn(dropdown);
   });
 
   $('#signin').keypress(function(e) {
-      console.log(e.keyCode);
-      // if (e.keyCode == $.ui.keyCode.ENTER) {
-          // submitSignIn();
-      // }
+      console.log(e.keyCode == 13);
+      if (e.keyCode == 13) {
+          submitSignIn();
+      }
   });
 
   // row toggle
