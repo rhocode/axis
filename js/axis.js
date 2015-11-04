@@ -261,7 +261,7 @@ $(document).ready(function() {
   });
 
   $('#signin').keypress(function(e) {
-      console.log(e.keycode);
+      console.log(e.keyCode);
       // if (e.keyCode == $.ui.keyCode.ENTER) {
           // submitSignIn();
       // }
