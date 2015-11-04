@@ -178,6 +178,17 @@ $(document).ready(function() {
     sendKeepAlive(tutorID);
   }, 300000);
 
+  $('#refreshtable').click(function() {
+      $('#refreshicon').addClass('fa-spin-custom');
+      var button =  $(this);
+      button.prop('disabled', true).css('cursor','default');
+      
+      setTimeout(function() {
+          button.prop('disabled', false);
+          $('#refreshicon').removeClass('fa-spin-custom');
+      }, 3000);
+  });
+
   $("#locationdropdown").change(function() {
     if ($("#locationdropdown").val() == "location") {
       dropdown = false;
@@ -254,6 +265,9 @@ $(document).ready(function() {
     }
 
   });
+
+  
+
 
   // form submission
   $("#submit").click(function(e) {
