@@ -8,6 +8,7 @@
   <link href="axis.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="js/sleep.js"></script>
   <script src="js/axis.js"></script>
 </head>
 
@@ -23,7 +24,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a href="#" data-toggle="modal" data-target="#signup"><span class="label label-primary">Tutee Sign-up</span></a>
+              <a id="ttsignup" href="#" data-toggle="modal" data-target="#signup"><span class="label label-primary">Tutee Sign-up</span></a>
             </li>
             <li>
               <a href="#" data-toggle="modal" data-target="#signin"><span class="label label-success">Tutor Sign-in</span></a>
@@ -80,9 +81,6 @@
                       <td>50</td>
                       <td>0</td>
                       <td>
-                        <button id="enter_queue" type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#queue"  data-backdrop="static" data-keyboard="false" title="Enter Queue">
-                          <span class="glyphicon glyphicon glyphicon-time" aria-hidden="true"></span>
-                        </button>
                       </td>
                     </tr>
                   </tbody>
@@ -127,22 +125,22 @@
 
               <div class="form-group" id="computerform">
                 <label class="control-label" for="text">Computer #</label>
-                <input class="form-control" id="num" placeholder="42">
+                <input autocomplete="off" class="form-control" id="num" placeholder="42">
               </div>
 
               <div class="form-group" id="locationform">
                 <label class="control-label" for="text">Location</label>
-                <input class="form-control" id="location" placeholder="Lobby">
+                <input autocomplete="off"  class="form-control" id="location" placeholder="Lobby">
               </div>
 
               <div class="form-group" id="subjectform">
                 <label class="control-label" for="subject">Subject(s) (Comma delimited)</label>
-                <input class="form-control" id="subject" placeholder="10, 20, 30, 154a">
+                <input autocomplete="off"  class="form-control" id="subject" placeholder="10, 20, 30, 154a">
               </div>
 
               <div class="form-group" id="passwordform">
                 <label class="control-label" for="password">Password</label>
-                <input class="form-control" type="password" id="password" placeholder="Secret!">
+                <input autocomplete="off" class="form-control" type="password" id="password" placeholder="Secret!">
               </div>
               <div class="form-group" id="serverresponselogin">
                 &nbsp;

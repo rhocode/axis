@@ -2,7 +2,12 @@
 
 var tutorID = -1; //Local tracking of tutor numbers
 
-
+function createButton(id) {
+  return '<button id="' + id + '" type="button" class="btn btn-xs btn-success enterqueue" \
+      title="Enter Queue">\
+      <span class="glyphicon glyphicon glyphicon-time" aria-hidden="true"></span>\
+      </button>'
+}
 function encodeRFC5987ValueChars (str) {
     return encodeURIComponent(str).
         // Note that although RFC3986 reserves "!", RFC5987 does not,
@@ -64,6 +69,38 @@ function sendKeepAlive(tutorid){
         },
         complete: function (xhr, status) {
             console.log("Keepalive Sent.");
+        }
+    });
+}
+
+function populateTuteeTable(){
+    $.ajax({
+        url: "http://d.rhocode.com:5000/tutoredsubjs.html?",
+        data: {},
+        type: "GET",
+        crossDomain: true,
+        dataType: "jsonp",
+        success: function (data) {
+            var $data = $('<div>');
+            var numitems = 0;
+            $.each(data.data, function(i, item) {
+                numitems++;
+                var $tr = $('<tr id=\'class-' + item.subject + '\'>').append(
+                    $('<td>').text(item.subject),
+                    $('<td>').text(item.queue),
+                    $('<td>').html($.parseHTML(createButton('enter-queue-' + item.subject)))
+                );
+                $data.append($tr);
+            });
+            if (numitems == 0)
+              $data.append($.parseHTML('<tr><td>There are no tutored classes at this time.</td><td/><td/></tr>'));
+            $('#tutoringsubjectbody').html($data.html());
+        },  
+        error: function (xhr, status) {
+
+        },
+        complete: function (xhr, status) {
+            console.log("Table populated.");
         }
     });
 }
@@ -161,7 +198,8 @@ function submitSignIn(dropdown) {
 
 $(document).ready(function() {
   // set defaults
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="tooltip"]').tooltip();
+  sleep.prevent();
   $("#locationform").hide();
   $("#locationdropdown").val("computer");
   var dropdown = true;
@@ -182,7 +220,7 @@ $(document).ready(function() {
       $('#refreshicon').addClass('fa-spin-custom');
       var button =  $(this);
       button.prop('disabled', true).css('cursor','default');
-      
+      populateTable();
       setTimeout(function() {
           button.prop('disabled', false);
           $('#refreshicon').removeClass('fa-spin-custom');
@@ -199,11 +237,6 @@ $(document).ready(function() {
       $("#locationform").hide();
       $("#computerform").show();
     }
-  });
-
-  $("#enter_queue").click(function(e) {
-    $('#signup').modal('hide');
-    $('#signin').modal('hide');
   });
 
   $("#tsubmit").click(function(e) {
@@ -266,10 +299,25 @@ $(document).ready(function() {
 
   });
 
-  
+  $(document).on('click', '.enterqueue', function(e){
+      console.log('hidden');
+      $('#signup').modal('hide');
+      $('#signin').modal('hide');
+      $('#queue').modal('show');
+  });
 
+
+$('#queue').modal({
+  backdrop: 'static',
+  keyboard: false,
+  show: false
+})
 
   // form submission
+  $("#ttsignup").click(function(e) {
+    populateTuteeTable();
+  });
+
   $("#submit").click(function(e) {
     submitSignIn(dropdown);
   });
