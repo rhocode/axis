@@ -54,7 +54,10 @@ function sendKeepAlive(tutorid){
         crossDomain: true,
         dataType: "jsonp",
         success: function (data) {
-                        
+          if (data.status != 'success') {
+              $("#serverresponselogin").text("Your session has expired. Please relog.");
+              $('#signin').modal('show');
+          }
         },
         error: function (xhr, status) {
 
