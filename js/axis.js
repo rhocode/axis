@@ -166,7 +166,7 @@ $(document).ready(function() {
     }
 
     query += "&sub="
-    var subs = 0 //counts # of subjects needs tutoring for.
+    var subs = 0; //counts # of subjects needs tutoring for.
     // $('#tutoringsubjectbody tr').each(function() {
     //   //check the buttons to see if they are checked
     //   //count the # of buttons
