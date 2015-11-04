@@ -131,7 +131,10 @@ $(document).ready(function() {
     }
   });
 
-
+  $("#enter_queue").click(function(e) {
+    $('#signup').modal('hide');
+    $('#signin').modal('hide');
+  });
 
   $("#tsubmit").click(function(e) {
 
