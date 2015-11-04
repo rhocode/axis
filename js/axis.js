@@ -261,9 +261,10 @@ $(document).ready(function() {
   });
 
   $('#signin').keypress(function(e) {
-      if (e.keyCode == $.ui.keyCode.ENTER) {
-          submitSignIn();
-      }
+      console.log(e.keycode);
+      // if (e.keyCode == $.ui.keyCode.ENTER) {
+          // submitSignIn();
+      // }
   });
 
   // row toggle
