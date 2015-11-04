@@ -135,8 +135,8 @@ $(document).ready(function() {
 
   $("#tsubmit").click(function(e) {
 
-  var valid = 0 // counts # of form arguments
-  var query = "?name="
+  var valid = 0; // counts # of form arguments
+  var query = "?name=";
 
   if (!$("#tname").val()) {
     $("#tname").parent('div').addClass("has-error");
@@ -197,7 +197,7 @@ $(document).ready(function() {
   $("#submit").click(function(e) {
     //input validation
     var valid = 0;
-    var query = "?name="
+    var query = "?name=";
     // REALLY BAD INPUT VALIDATION
     if (!$("#name").val()) {
       $("#name").parent('div').addClass("has-error");
