@@ -54,10 +54,7 @@ function sendKeepAlive(tutorid){
         crossDomain: true,
         dataType: "jsonp",
         success: function (data) {
-          if (data.status != 'success') {
-              $("#serverresponselogin").text("Your session has expired. Please relog.");
-              $('#signin').modal('show');
-          }
+                        
         },
         error: function (xhr, status) {
 
@@ -131,6 +128,68 @@ $(document).ready(function() {
     }
   });
 
+
+
+  // $("#tsubmit").click(function(e) {
+
+  // var valid = 0 // counts # of form arguments
+  // var query = "?name="
+
+  // if (!$("#name").val()) {
+  //   $("#name").parent('div').addClass("has-error");
+  // } 
+  // else {
+  //     $("#name").parent('div').removeClass("has-error");
+  //     valid++;
+  //     query += encodeRFC5987ValueChars($("#name").val());
+  //   }
+
+  //   if (dropdown) {
+  //     if (!$("#num").val() || !isNumeric($("#num").val())) {
+  //       $("#num").parent('div').addClass("has-error");
+  //     } else {
+  //       $("#num").parent('div').removeClass("has-error");
+  //       valid++;
+  //       query += "&num=" + encodeRFC5987ValueChars($("#num").val());
+  //     }
+  //   } else {
+  //     if (!$("#location").val()) {
+  //       $("#location").parent('div').addClass("has-error");
+  //     } else {
+  //       $("#location").parent('div').removeClass("has-error");
+  //       valid++;
+  //       query += "&loc=" + encodeRFC5987ValueChars($("#location").val());
+  //     }
+  //   }
+
+  //   query += "&sub="
+  //   var subs = 0 //counts # of subjects needs tutoring for.
+  //   $('#tutoringsubjectbody tr').each(function() {
+  //     //check the buttons to see if they are checked
+  //     //count the # of buttons
+  //     query += encodeRFC5987ValueChars($("#button").closest("div").attr("id"));
+  //     // ^^^ Adds the id of the closest value to the button, theoretically the 
+  //     // class
+  //   }
+
+  //   if (!subs) {
+  //     $("#tutoringsubjectbody").parent('div').addClass("has-error");
+  //   } else {
+  //     $("#tutoringsubjectbody").parent('div').removeClass("has-error");
+  //     valid++;
+  //   }
+
+  //   if (valid == 4) {
+  //     //do submit
+  //     console.log("we good");
+  //     console.log(query);
+  //     // sendTutoreeAttempt(query); Tutoree send attempt needed?
+  //   } else {
+  //     console.log("nice try kid");
+  //   }
+
+  // });
+
   // form submission
   $("#submit").click(function(e) {
     //input validation
@@ -178,7 +237,6 @@ $(document).ready(function() {
       valid++;
       query += "&pass=" + encodeRFC5987ValueChars($("#password").val());
     }
-
 
     if (valid == 4) {
       //do submit
