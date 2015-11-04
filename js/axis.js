@@ -100,6 +100,65 @@ function populateTable(){
     });
 }
 
+
+function submitSignIn() {
+      //input validation
+    var valid = 0;
+    var query = "?name=";
+    // REALLY BAD INPUT VALIDATION
+    if (!$("#name").val()) {
+      $("#name").parent('div').addClass("has-error");
+    } else {
+      $("#name").parent('div').removeClass("has-error");
+      valid++;
+      query += encodeRFC5987ValueChars($("#name").val());
+    }
+    
+    if (dropdown) {
+      if (!$("#num").val() || !isNumeric($("#num").val())) {
+        $("#num").parent('div').addClass("has-error");
+      } else {
+        $("#num").parent('div').removeClass("has-error");
+        valid++;
+        query += "&num=" + encodeRFC5987ValueChars($("#num").val());
+      }
+    } else {
+      if (!$("#location").val()) {
+        $("#location").parent('div').addClass("has-error");
+      } else {
+        $("#location").parent('div').removeClass("has-error");
+        valid++;
+        query += "&loc=" + encodeRFC5987ValueChars($("#location").val());
+      }
+    }
+
+    var format = /^[0-9]+[a-zA-Z]*[\s]*([\s,]+[0-9]+[a-zA-Z]*)*$/i;
+    if (!$("#subject").val() ||  !format.test( $("#subject").val() ) ) {
+      $("#subject").parent('div').addClass("has-error");
+    } else {
+      $("#subject").parent('div').removeClass("has-error");
+      valid++;
+      query += "&sub=" + encodeRFC5987ValueChars($("#subject").val());
+    }
+    if (!$("#password").val()) {
+      $("#password").parent('div').addClass("has-error");
+    } else {
+      $("#password").parent('div').removeClass("has-error");
+      valid++;
+      query += "&pass=" + encodeRFC5987ValueChars($("#password").val());
+    }
+
+    if (valid == 4) {
+      //do submit
+      console.log("we good");
+      console.log(query);
+      sendLoginAttempt(query);
+    } else {
+      console.log("nice try kid");
+    }
+
+}
+
 $(document).ready(function() {
   // set defaults
   $('[data-toggle="tooltip"]').tooltip()
@@ -198,63 +257,14 @@ $(document).ready(function() {
 
   // form submission
   $("#submit").click(function(e) {
-    //input validation
-    var valid = 0;
-    var query = "?name=";
-    // REALLY BAD INPUT VALIDATION
-    if (!$("#name").val()) {
-      $("#name").parent('div').addClass("has-error");
-    } else {
-      $("#name").parent('div').removeClass("has-error");
-      valid++;
-      query += encodeRFC5987ValueChars($("#name").val());
-    }
-    
-    if (dropdown) {
-      if (!$("#num").val() || !isNumeric($("#num").val())) {
-        $("#num").parent('div').addClass("has-error");
-      } else {
-        $("#num").parent('div').removeClass("has-error");
-        valid++;
-        query += "&num=" + encodeRFC5987ValueChars($("#num").val());
-      }
-    } else {
-      if (!$("#location").val()) {
-        $("#location").parent('div').addClass("has-error");
-      } else {
-        $("#location").parent('div').removeClass("has-error");
-        valid++;
-        query += "&loc=" + encodeRFC5987ValueChars($("#location").val());
-      }
-    }
-
-    var format = /^[0-9]+[a-zA-Z]*[\s]*([\s,]+[0-9]+[a-zA-Z]*)*$/i;
-    if (!$("#subject").val() ||  !format.test( $("#subject").val() ) ) {
-      $("#subject").parent('div').addClass("has-error");
-    } else {
-      $("#subject").parent('div').removeClass("has-error");
-      valid++;
-      query += "&sub=" + encodeRFC5987ValueChars($("#subject").val());
-    }
-    if (!$("#password").val()) {
-      $("#password").parent('div').addClass("has-error");
-    } else {
-      $("#password").parent('div').removeClass("has-error");
-      valid++;
-      query += "&pass=" + encodeRFC5987ValueChars($("#password").val());
-    }
-
-    if (valid == 4) {
-      //do submit
-      console.log("we good");
-      console.log(query);
-      sendLoginAttempt(query);
-    } else {
-      console.log("nice try kid");
-    }
-
+    submitSignIn();
   });
 
+  $('#signin').keypress(function(e) {
+      if (e.keyCode == $.ui.keyCode.ENTER) {
+          submitSignIn();
+      }
+  });
 
   // row toggle
   $(".rowtoggle").click(function(e) {
