@@ -23,6 +23,26 @@ function isNumeric(num){
     return !isNaN(num)
 }
 
+function enQueue(myclass) {
+  $.ajax({
+    url:"http://d.rhocode.com:5000/",
+    data: {},
+    type: "GET",
+    crossDomain: true,
+    dataType: "jsonp",
+    success: function (data) {
+      $("#displaymodalText").html("You have been successfully queued");
+    },
+    error: function (xhr, status) {
+    },
+    complete: function (xhr, status) {
+      console.log("complete");
+    }
+
+  });
+
+}
+
 function sendLoginAttempt(query){
     $.ajax({
         url: "http://d.rhocode.com:5000/login.html" + query,
@@ -343,23 +363,3 @@ $(document).ready(function() {
   });
 
 });
-
-function enQueue(class) {
-  $.ajax({
-    url:"http://d.rhocode.com:5000/",
-    data: {},
-    type: "GET",
-    crossDomain: true,
-    dataType: "jsonp",
-    success: function (data) {
-      $("#displaymodalText").html("You have been successfully queued");
-    },
-    error: function (xhr, status) {
-    },
-    complete: function (xhr, status) {
-      console.log("complete");
-    }
-
-  });
-
-}
