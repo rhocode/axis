@@ -304,14 +304,16 @@ $(document).ready(function() {
       $('#signup').modal('hide');
       $('#signin').modal('hide');
       $('#queue').modal('show');
+      var tr_id = $(this).closest('div[id]');
+      enQueue(tr_id)
   });
 
 
-$('#queue').modal({
-  backdrop: 'static',
-  keyboard: false,
-  show: false
-})
+  $('#queue').modal({
+    backdrop: 'static',
+    keyboard: false,
+    show: false
+  })
 
   // form submission
   $("#ttsignup").click(function(e) {
@@ -342,4 +344,22 @@ $('#queue').modal({
 
 });
 
+function enQueue(class) {
+  $.ajax({
+    url:"http://d.rhocode.com:5000/",
+    data: {},
+    type: "GET",
+    crossDomain: true,
+    dataType: "jsonp",
+    success: function (data) {
+      $(".modal-body").html("You have been successfully queued");
+    },
+    error: function (xhr, status) {
+    },
+    complete: function (xhr, status) {
+      console.log("complete");
+    }
 
+  });
+
+}
