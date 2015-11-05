@@ -352,7 +352,7 @@ function enQueue(class) {
     crossDomain: true,
     dataType: "jsonp",
     success: function (data) {
-      $(".modal-body").html("You have been successfully queued");
+      $("#displaymodalText").html("You have been successfully queued");
     },
     error: function (xhr, status) {
     },
