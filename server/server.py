@@ -107,7 +107,7 @@ def login():
 		tutorCode = tutors[name][2]
 	tutors[name] = (actualloc, ', '.join(allsubs), tutorCode, allsubs)
 	tutorExpiration[tutorCode] = int(time.time()) + TIME_BEFORE_REMOVAL
-	print(tutorCode, tutorExpiration[tutorCode])
+	print (tutorCode, tutorExpiration[tutorCode])
 	print (tutors[name])
 
 		
