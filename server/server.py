@@ -125,6 +125,7 @@ def keepalive():
 
 
 
+
 @app.route('/table.html')
 def displayTable():
 	dict_list = []
