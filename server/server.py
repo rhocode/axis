@@ -124,6 +124,7 @@ def keepalive():
 		return returnData({'status' : 'failure'})
 
 
+
 @app.route('/table.html')
 def displayTable():
 	dict_list = []
