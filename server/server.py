@@ -16,9 +16,9 @@ socketio = SocketIO(app)
 
 @app.route('/')
 def index():
-	while 1 == 1:
-		print 'a'
-	return 'hi'
+    while 1 == 1:
+        print 'a'
+    return 'hi'
 
 
 tutors = {}
@@ -29,9 +29,9 @@ tutee_queue = {}
 TIME_BEFORE_REMOVAL = 60 * 10
 
 try:
-	password = open(os.path.dirname(__file__) + 'passw', 'r').readline().replace('\n', '')
+    password = open(os.path.dirname(__file__) + 'passw', 'r').readline().replace('\n', '')
 except Exception as e:
-	password = open(os.path.dirname(__file__) + '/passw', 'r').readline().replace('\n', '')
+    password = open(os.path.dirname(__file__) + '/passw', 'r').readline().replace('\n', '')
 
 def classComparator(x):
     match = re.match(r"([0-9]+)([a-z]*)", x.lower(), re.I)
@@ -162,12 +162,16 @@ def test_message(message):
 def test_message(message):
     emit('my response', {'data': message['data']}, broadcast=True)
 
-@socketio.on('connect', namespace='/test')
-def test_connect():
-    time.sleep(10)
-    emit('my response', {'data': 'Connected'})
+@socketio.on('client_connected')
+def client_connect(message):
+    print(message)
+    emit('client_connected2', 'Millions')
 
-@socketio.on('disconnect', namespace='/test')
+@socketio.on('connect')
+def test_disconnect():
+    print('Client connected 1.')
+
+@socketio.on('disconnect')
 def test_disconnect():
     print('Client disconnected')
 

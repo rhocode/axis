@@ -4,7 +4,11 @@ var tutorID = -1; //Local tracking of tutor numbers
 
 var socket = io.connect('http://d.rhocode.com:5000');
     socket.on('connect', function() {
-        console.log('Hello');
+        socket.emit('client_connected', {data: 'I\'m connected!'});
+    });
+
+    socket.on('client_connected2', function(data) {
+        console.log(data);
     });
 
 function createButton(id) {
