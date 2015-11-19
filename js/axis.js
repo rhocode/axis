@@ -2,6 +2,11 @@
 
 var tutorID = -1; //Local tracking of tutor numbers
 
+var socket = io.connect('http://d.rhocode.com:5000');
+    socket.on('connect', function() {
+        console.log('Hello');
+    });
+
 function createButton(id) {
   return '<button id="' + id + '" type="button" class="btn btn-xs btn-success enterqueue" \
       title="Enter Queue">\
@@ -226,7 +231,10 @@ $(document).ready(function() {
   var dropdown = true;
   
   // dropdown changer
-  
+
+
+
+
 
 
 
@@ -256,7 +264,7 @@ $(document).ready(function() {
 var target = document.getElementById('spinner')
 var spinner = new Spinner(opts).spin(target);
 
-
+  var socket = io.connect('http://d.rhocode.com:5000/chat');
 
 
 
