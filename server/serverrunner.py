@@ -1,11 +1,13 @@
 from flask_failsafe import failsafe
+from flask.ext.socketio import SocketIO, emit
+from server import socketio, app
+
 
 @failsafe
 def create_app():
   # note that the import is *inside* this function so that we can catch
   # errors that happen at import time
-  from server import app
-  return app
+  return socketio
 
 if __name__ == "__main__":
-  create_app().run(host='0.0.0.0', debug=True)
+  create_app().run(app, host='0.0.0.0', debug=True)
