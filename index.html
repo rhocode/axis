@@ -12,7 +12,7 @@
   <script src="js/sleep.js"></script>
   <script src="js/spinner.js"></script>
   <script src="js/axis.js"></script>
-
+  
 </head>
 
 <body>
@@ -169,8 +169,20 @@
             <h3 class="modal-title">Queue</h3>
           </div>
           <div class="modal-body" id="displaymodalText">
-            <div id="spinner" class="row">
-            </div>
+<div id="loadingqueue" >
+<div class="browser-screen-loading-content">
+  <div class="loading-dots dark-gray">
+    <i></i>
+    <i></i>
+    <i></i>
+    <i></i>
+  </div>
+</div>
+<br/><br/>
+<div class="text-center">Looking For Tutors...</div>
+<div class="text-center" id="queuestatus1"></div>
+<div class="text-center" id="queuestatus2"></div>
+          </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel Queue</button>

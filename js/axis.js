@@ -2,15 +2,6 @@
 
 var tutorID = -1; //Local tracking of tutor numbers
 
-var socket = io.connect('http://d.rhocode.com:5000');
-    socket.on('connect', function() {
-        socket.emit('client_connected', {data: 'I\'m connected!'});
-    });
-
-    socket.on('client_connected2', function(data) {
-        console.log(data);
-    });
-
 function createButton(id) {
   return '<button id="' + id + '" type="button" class="btn btn-xs btn-success enterqueue" \
       title="Enter Queue">\
@@ -34,22 +25,32 @@ function isNumeric(num){
 
 function enQueue(myclass) {
   console.log(myclass.slice(12));
-  $.ajax({
-    url:"http://d.rhocode.com:5000/enterqueue.html?class=" + myclass.slice(12),
-    data: {},
-    type: "GET",
-    crossDomain: true,
-    dataType: "jsonp",
-    success: function (data) {
-      // $("#displaymodalText").text("You have been successfully queued");
-    },
-    error: function (xhr, status) {
-    },
-    complete: function (xhr, status) {
-      console.log("complete");
-    }
+  var socket = io.connect('http://d.rhocode.com:5000');
+    socket.on('connect', function() {
+        console.log('We waiting in queue now!')
+        socket.emit('request_spot', {data: myclass.slice(12)});
+    });
 
-  });
+    socket.on('tutors_for_subj', function(data) {
+        console.log('Got number of tutors!')
+        $('#queuestatus1').text('Tutors here: ' + data['data']);
+    });
+  // $.ajax({
+  //   url:"http://d.rhocode.com:5000/enterQueue.html?class=" + myclass.slice(12),
+  //   data: {},
+  //   type: "GET",
+  //   crossDomain: true,
+  //   dataType: "jsonp",
+  //   success: function (data) {
+  //     // $("#displaymodalText").text("You have been successfully queued");
+  //   },
+  //   error: function (xhr, status) {
+  //   },
+  //   complete: function (xhr, status) {
+  //     console.log("complete");
+  //   }
+
+  // });
 
 }
 
@@ -144,6 +145,7 @@ function populateTable(){
         crossDomain: true,
         dataType: "jsonp",
         success: function (data) {
+            console.log(data);
             var $data = $('<div>');
             var numitems = 0;
             $.each(data.data, function(i, item) {
@@ -235,40 +237,6 @@ $(document).ready(function() {
   var dropdown = true;
   
   // dropdown changer
-
-
-
-
-
-
-
-
-  var opts = {
-  lines: 13 // The number of lines to draw
-, length: 28 // The length of each line
-, width: 14 // The line thickness
-, radius: 42 // The radius of the inner circle
-, scale: 1 // Scales overall size of the spinner
-, corners: 1 // Corner roundness (0..1)
-, color: '#000' // #rgb or #rrggbb or array of colors
-, opacity: 0.25 // Opacity of the lines
-, rotate: 0 // The rotation offset
-, direction: 1 // 1: clockwise, -1: counterclockwise
-, speed: 1 // Rounds per second
-, trail: 60 // Afterglow percentage
-, fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
-, zIndex: 2e9 // The z-index (defaults to 2000000000)
-, className: 'spinner' // The CSS class to assign to the spinner
-, top: '50%' // Top position relative to parent
-, left: '50%' // Left position relative to parent
-, shadow: false // Whether to render a shadow
-, hwaccel: false // Whether to use hardware acceleration
-, position: 'absolute' // Element positioning
-}
-var target = document.getElementById('spinner')
-var spinner = new Spinner(opts).spin(target);
-
-  var socket = io.connect('http://d.rhocode.com:5000/chat');
 
 
 
@@ -392,7 +360,6 @@ var spinner = new Spinner(opts).spin(target);
   });
 
   $('#signin').keypress(function(e) {
-      console.log(e.keyCode == 13);
       if (e.keyCode == 13) {
           submitSignIn();
       }
