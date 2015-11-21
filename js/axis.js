@@ -27,13 +27,25 @@ function enQueue(myclass) {
   console.log(myclass.slice(12));
   var socket = io.connect('http://d.rhocode.com:5000');
     socket.on('connect', function() {
+        $('#foundqueue').hide();
+        $('#loadingqueue').show();
         console.log('We waiting in queue now!')
         socket.emit('request_spot', {data: myclass.slice(12)});
     });
 
-    socket.on('tutors_for_subj', function(data) {
+    socket.on('tutors_for_subj', function(dat) {
         console.log('Got number of tutors!')
-        $('#queuestatus1').text('Tutors here: ' + data['data']);
+        $('#queuestatus1').text('Tutors here: ' + dat['tutors']);
+        socket.emit('wait_spot');
+    });
+
+    socket.on('found_tutor', function(data) {
+        console.log('Got a tutor!')
+
+        $('#loadingqueue').fadeOut();
+        $('#foundqueue').fadeIn();
+
+        // text('Tutors here: ' + data['tutors']);
     });
   // $.ajax({
   //   url:"http://d.rhocode.com:5000/enterQueue.html?class=" + myclass.slice(12),
