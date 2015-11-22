@@ -1,6 +1,9 @@
 var socket = io.connect('http://d.rhocode.com:5000'); //SocketIO Connection
 
 var tutorID = -1; //Local tracking of tutor numbers
+var tuteeID = -1;
+var tutorRoom = -1;
+var tuteeClass = "";
 var in_queue = false;
 
 function createButton(id) {
@@ -34,25 +37,27 @@ function setupTutor(tid, name, location, subjects) {
 
 socket.on('no_tutees', function(data) {
 		console.log('Waiting game.')
+        tutorRoom = data.data;
 		$('#tutor_text_status').text('No tutees at this time. You\'ve joined room ' + data.data + '.');
+
 });
 
 
 socket.on('found_tutee', function(data) {
 		console.log('Found Tutee!');
-		$('#tutor_text_status').text('Your tutee is ' + data['tuteeName'] + ' in ' + data['tuteeLocation']);
+		$('#tutor_text_status').text('Your tutee is ' + unescape(data['tuteeName']) + ' in ' + unescape(data['tuteeLocation']));
 		setTimeout(function() {
       $("#nextOrStart").removeClass('disabled');
-    }, 5000);
+    }, 1000);
 });
 
 
 socket.on('found_tutor', function(data) {
-		$('#tutorname').text(data['name']);
-		$('#tutorlocation').text(data['location']);
+		$('#tutorname').text(unescape(data['name']));
+		$('#tutorlocation').text(unescape(data['location']));
 		$('#loadingqueue').fadeOut();
 		$('#foundqueue').fadeIn();
-		console.log(data['name']);
+		console.log(unescape(data['name']));
 		console.log(data['location']);
 		in_queue = false;
 });
@@ -60,8 +65,14 @@ socket.on('found_tutor', function(data) {
 
 socket.on('tutee_queue_status', function(data) {
 		console.log(data.status);
+        console.log(data.tid);
+        console.log(data.myclass);
 		$(queuestatus2).text(data.status);
+        tuteeID = data.tid;
+        tuteeClass = data.myclass;
 });
+
+
 
 socket.on('tutor_connected', function(data) {
 	if (data['status'] == 'success') {
@@ -343,6 +354,20 @@ $(document).ready(function() {
 
        socket.emit('ready_to_tutor');
 		});
+
+    $("#exitqueue").bind( "click", function() {
+        if (tuteeID != -1) {
+          // socket.emit('force_tutee_remove', {'myclass' : tuteeClass, 'tuteeID' : tuteeID});  
+          socket.emit('force_tutee_remove', {'tuteeID' : tuteeID, 'myclass' : tuteeClass})
+          console.log("Removed tutee");
+        }     
+    });
+
+    $("#disconnect").bind( "click", function() {
+        if (tutorID != -1) {
+          socket.emit('force_tutor_remove', {'tutorRoom' : tutorRoom})
+        }     
+    });
 
 
     var dropdown = true;
