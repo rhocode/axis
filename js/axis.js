@@ -153,7 +153,7 @@ function enQueue(myclass, name, location) {
 
 $(window).bind('beforeunload', function(){
     if( tutorID != -1 || in_queue ){
-        return "You are leaving the tutoring page. If you are a tutor, your session will be destroyed. If you are waiting in queue, you will be removed. Are you sure you want to exit?"
+        return "You are leaving the tutoring page. If you are a tutor, your session will be destroyed. If you are waiting in queue, you will be removed."
     }
 });
 
