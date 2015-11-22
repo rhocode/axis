@@ -26,10 +26,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li>
+            <li id="tuteesign">
               <a id="ttsignup" href="#" data-toggle="modal" data-target="#signup"><span class="label label-primary">Tutee Sign-up</span></a>
             </li>
-            <li>
+            <li id="tutorsign">
               <a href="#" data-toggle="modal" data-target="#signin"><span class="label label-success">Tutor Sign-in</span></a>
             </li>
           </ul>
@@ -57,7 +57,7 @@
                 <label for="tlocation">Location</label>
                 <select name="tplace" id="tlocationdropdown">
                   <option value="tcomputer">Computer #</option>
-                  <option value="tlocation">Location</option>
+                  <option value="tlocation">Other</option>
                 </select>
               </div>
 
@@ -67,7 +67,7 @@
               </div>
 
               <div class="form-group" id="tlocationform">
-                <label class="control-label" for="text">Location</label>
+                <label class="control-label" for="text">Other</label>
                 <input class="form-control" id="tlocation" placeholder="Lobby">
               </div>
 
@@ -88,10 +88,6 @@
                     </tr>
                   </tbody>
                 </table>
-              <div class="form-group" id="serverresponselogin2">
-                &nbsp;
-              </div>
-              <button type="button" id="tsubmit" class="btn btn-primary">Submit</button>
             </form>
           </div>
           <div class="modal-footer">
@@ -122,7 +118,7 @@
                 <label for="location">Location</label>
                 <select name="place" id="locationdropdown">
                   <option value="computer">Computer #</option>
-                  <option value="location">Location</option>
+                  <option value="location">Other</option>
                 </select>
               </div>
 
@@ -132,7 +128,7 @@
               </div>
 
               <div class="form-group" id="locationform">
-                <label class="control-label" for="text">Location</label>
+                <label class="control-label" for="text">Other</label>
                 <input autocomplete="off"  class="form-control" id="location" placeholder="Lobby">
               </div>
 
@@ -179,7 +175,7 @@
   </div>
 </div>
 <br/><br/>
-<div class="text-center">Looking For Tutors...</div>
+<div class="text-center">Waiting For Tutors...</div>
 <div class="text-center" id="queuestatus1"></div>
 <div class="text-center" id="queuestatus2"></div>
           </div>
@@ -205,6 +201,34 @@
       <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+
+
+    <div style="display: none;" id= "tutor-control-panel" class="panel panel-default">
+
+      <div class="panel-heading clearfix">
+        <h4>Tutor Control Panel</h4>
+      </div>
+
+      <div class="panel-body">
+      <br/>
+      <div class="text-center" id="tutor_text_status"></div>
+      <br/>
+      <div class="row">
+                    <div class="col-sm-12">
+                        <div class="text-center">
+                            <button class="btn btn-success" id="nextOrStart">Start Tutoring</button>
+                            <button class="btn btn-danger" id="disconnect"> Disconnect</button>
+                        </div>
+                    </div>
+                </div>
+      </div>
+    </div>
+
+
+
+
+
+
 
 
     <div class="panel panel-default">
@@ -236,6 +260,9 @@
         </table>
       </div>
     </div>
+
+
+
 
   </div>
 </body>
