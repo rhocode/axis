@@ -365,7 +365,13 @@ $(document).ready(function() {
 
     $("#disconnect").bind( "click", function() {
         if (tutorID != -1) {
-          socket.emit('force_tutor_remove', {'tutorRoom' : tutorRoom})
+            socket.emit('force_tutor_remove', {'tutorRoom' : tutorRoom});
+            tutorRoom = -1;
+            tutorID = -1;
+            $('#tutor-control-panel').fadeOut();
+            $("#tuteesign").show();
+            $("#tutorsign").show();
+          console.log('disconnected');
         }     
     });
 
@@ -386,7 +392,7 @@ $(document).ready(function() {
 
     setInterval(function() {
         sendKeepAlive(tutorID);
-    }, 300000);
+    }, 60000);
 
     $('#refreshtable').click(function() {
         $('#refreshicon').addClass('fa-spin-custom');
