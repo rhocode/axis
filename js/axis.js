@@ -78,6 +78,7 @@ socket.on('tutor_connected', function(data) {
 	if (data['status'] == 'success') {
 		console.log('Tutor has been added.');
 		$('#tutor-control-panel').fadeIn();
+                $('#nextOrStart').text('Start Tutoring').removeClass('disabled);s
 		$('#tutor_text_status').text('You are connected!');
 	} else {
 		console.log('Tutor could not be added.');
